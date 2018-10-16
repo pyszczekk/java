@@ -19,7 +19,6 @@ public class Test {
          Scanner odczyt;
          odczyt = new Scanner(System.in);
          int menu; 
-         Iterator it = figury.iterator();
          while(work){
          System.out.print("\n Wczytaj prostokat - 1 \n Wyswietl wszystkie prostokaty - 2 \n oblicz sume pol wszystkich prostokatow - 3 \n zakoncz - 4\n");
          menu=odczyt.nextInt();
