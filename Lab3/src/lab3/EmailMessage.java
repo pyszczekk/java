@@ -113,18 +113,12 @@ public void send() throws IOException{
          message.setSubject(subject);
          
          BodyPart messageBodyPart = new MimeBodyPart();
-
-         // Now set the actual message
          messageBodyPart.setText(content);
          
-         // Create a multipar message
          Multipart multipart = new MimeMultipart();
-
-         // Set text message part
          multipart.addBodyPart(messageBodyPart);
-
          messageBodyPart = new MimeBodyPart();
-        String path = new java.io.File(".").getCanonicalPath();
+         String path = new java.io.File(".").getCanonicalPath();
          String filename = path+"/src/lab3/c.jpg";
          DataSource source = new FileDataSource(filename);
          messageBodyPart.setDataHandler(new DataHandler(source));
@@ -133,11 +127,6 @@ public void send() throws IOException{
 
          // Send the complete message parts
          message.setContent(multipart, "text/html; charset=utf-8");
-
-         
-         
-         //message.setContent(content, "text/html");
-         
          // Send message
          Transport.send(message);
          System.out.println("Sent message successfully....");
