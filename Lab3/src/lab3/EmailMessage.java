@@ -4,8 +4,11 @@
  * and open the template in the editor.
  */
 package lab3;
+import java.io.IOException;
+import java.net.URL;
 import java.util.*;
 import java.util.regex.*;
+import javax.activation.*;
 import javax.mail.*;
 import javax.mail.internet.*;
 
@@ -46,7 +49,7 @@ private EmailMessage(EmailBuilder builder){
                 String emailRegex = "[a-zA-Z0-9_.]+@[a-zA-Z0-9]+.[a-zA-Z]{2,3}[.] {0,1}[a-zA-Z]+";
                 if(Pattern.matches(emailRegex, from)){
                      this.from = from;
-                }else throw new java.lang.Error("bled w twoim mailu");
+                }else throw new java.lang.Error("blad w twoim mailu");
                     
                  
                 for(int i = 0 ; i<_to.size();i++){
@@ -80,12 +83,9 @@ private EmailMessage(EmailBuilder builder){
 }
 
 
-public void send(){
+public void send() throws IOException{
  
     Properties props = System.getProperties();
-     String host = "localhost";
-      // Setup mail server
-     
         System.out.println("podaj haslo");
         Scanner odczyt = new Scanner(System.in);
         String password = odczyt.nextLine();
@@ -104,16 +104,40 @@ public void send(){
                     return new PasswordAuthentication(from, password);
             }
         });
-      // Get the default Session object.
-     // Session session = Session.getDefaultInstance(props);
+     
      try {
          for(int i =0; i<this.to.size();i++){
          MimeMessage message = new MimeMessage(session);
          message.setFrom(new InternetAddress(from));
          message.addRecipient(Message.RecipientType.TO, new InternetAddress(to.get(0)));
          message.setSubject(subject);
-         message.setContent(content, "text/html");
+         
+         BodyPart messageBodyPart = new MimeBodyPart();
 
+         // Now set the actual message
+         messageBodyPart.setText(content);
+         
+         // Create a multipar message
+         Multipart multipart = new MimeMultipart();
+
+         // Set text message part
+         multipart.addBodyPart(messageBodyPart);
+
+         messageBodyPart = new MimeBodyPart();
+        String path = new java.io.File(".").getCanonicalPath();
+         String filename = path+"/src/lab3/c.jpg";
+         DataSource source = new FileDataSource(filename);
+         messageBodyPart.setDataHandler(new DataHandler(source));
+         messageBodyPart.setFileName(filename);
+         multipart.addBodyPart(messageBodyPart);
+
+         // Send the complete message parts
+         message.setContent(multipart, "text/html; charset=utf-8");
+
+         
+         
+         //message.setContent(content, "text/html");
+         
          // Send message
          Transport.send(message);
          System.out.println("Sent message successfully....");
