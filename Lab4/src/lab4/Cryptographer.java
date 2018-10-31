@@ -16,7 +16,7 @@ import java.util.Scanner;
  */
 public class Cryptographer {
     public static void cryptfile(String fileIn, String fileOut, Algorithm al ) throws FileNotFoundException{
-       File file = new File(fileIn); // cala sciezka ??  inne nie chce dzialac xd
+       File file = new File(fileIn); 
        Scanner in = new Scanner(file);
         try (PrintWriter out = new PrintWriter(fileOut)) {
            while(in.hasNextLine()){
@@ -33,7 +33,7 @@ public class Cryptographer {
         }
     }
 public static void decryptfile(String fileIn, String fileOut, Algorithm al ) throws FileNotFoundException{
-       File file = new File(fileIn); // cala sciezka ??  inne nie chce dzialac xd
+       File file = new File(fileIn); 
        Scanner in = new Scanner(file);
         try (PrintWriter out = new PrintWriter(fileOut)) {
          while(in.hasNextLine()){
