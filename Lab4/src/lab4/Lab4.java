@@ -20,7 +20,7 @@ public class Lab4 {
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
         // TODO code application logic here
-         String slowo ="test";
+         String slowo ="test Karolina";
         ROT11 al = new ROT11();
         String wyn = al.crypt(slowo);
         System.out.println(wyn + " ---- zakodowane : " +slowo);
@@ -34,6 +34,12 @@ public class Lab4 {
         c.cryptfile(in,out,al);
         String in2 = path+"/src/lab4/test3.txt";
         c.decryptfile(out,in2,al);
+        Polibiusz al2 = new Polibiusz();
+        String out2 = path+"/src/lab4/test4.txt";
+        String pol = path+"/src/lab4/test5.txt";
+        c.cryptfile(in,out2, al2);
+        c.decryptfile(out2,pol,al2);
+         
     }
     
 }
