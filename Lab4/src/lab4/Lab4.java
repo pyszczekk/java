@@ -7,8 +7,7 @@ package lab4;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
-
+import java.io.IOException;
 /**
  *
  * @author pyszczekk
@@ -17,8 +16,9 @@ public class Lab4 {
 
     /**
      * @param args the command line arguments
+     * @throws java.io.FileNotFoundException
      */
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException, IOException {
         // TODO code application logic here
          String slowo ="test";
         ROT11 al = new ROT11();
@@ -27,13 +27,12 @@ public class Lab4 {
         slowo = al.decrypt(wyn);
          System.out.println(wyn + " ---- odkodowane : " +slowo);
          
-         
-        File file = new File("/Users/pyszczekk/NetBeansProjects/JavaApplication1/src/javaapplication1/test.txt"); // cala sciezka ??  inne nie chce dzialac xd
+        String path = new java.io.File(".").getCanonicalPath();
         Cryptographer c = new Cryptographer();
-        String in = "/Users/pyszczekk/Desktop/wszystko/zabawa w studia/semestr III/java-git/java/Lab4/src/lab4/test.txt";
-        String out = "/Users/pyszczekk/Desktop/wszystko/zabawa w studia/semestr III/java-git/java/Lab4/src/lab4/test2.txt";
+        String in = path+"/src/lab4/test.txt";
+        String out =path+"/src/lab4/test2.txt";
         c.cryptfile(in,out,al);
-        String in2 = "/Users/pyszczekk/Desktop/wszystko/zabawa w studia/semestr III/java-git/java/Lab4/src/lab4/test3.txt";
+        String in2 = path+"/src/lab4/test3.txt";
         c.decryptfile(out,in2,al);
     }
     
