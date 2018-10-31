@@ -8,6 +8,7 @@ package lab4;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Scanner;
 /**
  *
  * @author pyszczekk
@@ -19,26 +20,41 @@ public class Lab4 {
      * @throws java.io.FileNotFoundException
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        // TODO code application logic here
-         String slowo ="test Karolina";
-        ROT11 al = new ROT11();
-        String wyn = al.crypt(slowo);
-        System.out.println(wyn + " ---- zakodowane : " +slowo);
-        slowo = al.decrypt(wyn);
-         System.out.println(wyn + " ---- odkodowane : " +slowo);
-         
-        String path = new java.io.File(".").getCanonicalPath();
-        Cryptographer c = new Cryptographer();
-        String in = path+"/src/lab4/test.txt";
-        String out =path+"/src/lab4/test2.txt";
-        c.cryptfile(in,out,al);
-        String in2 = path+"/src/lab4/test3.txt";
-        c.decryptfile(out,in2,al);
+        ROT11 al = new ROT11();  
         Polibiusz al2 = new Polibiusz();
-        String out2 = path+"/src/lab4/test4.txt";
-        String pol = path+"/src/lab4/test5.txt";
-        c.cryptfile(in,out2, al2);
-        c.decryptfile(out2,pol,al2);
+        Cryptographer c = new Cryptographer();
+        // kod na wypadek braku podania parametrow przy wywolaniu, zeby pokazac ze i tak dziala xd 
+        if(args.length==0){    
+            String path = new java.io.File(".").getCanonicalPath();
+            String in = path+"/src/lab4/test.txt";
+            String out =path+"/src/lab4/test2.txt";
+            c.cryptfile(in,out,al);
+            String in2 = path+"/src/lab4/test3.txt";
+            c.decryptfile(out,in2,al);
+            String out2 = path+"/src/lab4/test4.txt";
+            String pol = path+"/src/lab4/test5.txt";
+            c.cryptfile(in,out2, al2);
+            c.decryptfile(out2,pol,al2);
+        }else{ // kod przy podaniu sciezek pliku wejsciowego i wyjsciowego przy wywolaniu xd 
+           String in = args[0];     //sciezka pliku wejsciowego
+           String out = args[1];    //sciezka pliku wyjsciowego
+           System.out.print("Wybierz: \n 1 - szyfrowanie \n 2 - deszyfrowanie \n");
+           Scanner odczyt;
+           odczyt = new Scanner(System.in);
+           int x = odczyt.nextInt();
+           File file = new File(in); 
+           Scanner inFile = new Scanner(file);
+           Algorithm alg;
+           if(inFile.hasNextInt()) alg=al2;
+           else alg=al;
+           if(x==1){
+               c.cryptfile(in,out,alg);
+           }else if(x==2){
+               c.decryptfile(in,out,alg);
+           }else{
+               System.out.println("nie rozumiem polecenia :) ");
+           }
+        }
          
     }
     
