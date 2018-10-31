@@ -23,10 +23,10 @@ public class Lab4 {
         ROT11 al = new ROT11();  
         Polibiusz al2 = new Polibiusz();
         Cryptographer c = new Cryptographer();
-
+        
         if(args.length==0){    // kod na wypadek braku podania parametrow przy wywolaniu, zeby pokazac ze i tak dziala xd 
             String path = new java.io.File(".").getCanonicalPath();
-            String in = path+"/src/lab4/test.txt";
+            String in = path+"/src/test.txt";
             String out =path+"/src/lab4/test2.txt";
             c.cryptfile(in,out,al);
             String in2 = path+"/src/lab4/test3.txt";
@@ -45,11 +45,19 @@ public class Lab4 {
            File file = new File(in); 
            Scanner inFile = new Scanner(file);
            Algorithm alg;
-           if(inFile.hasNextInt()) alg=al2;
-           else alg=al;
            if(x==1){
+               System.out.println("wybierz: \n 1 - ROT11 \n 2 - Polibiusz");
+               int y = odczyt.nextInt();
+               if(y==1)alg=al;
+               else if(y==2) alg=al2;
+               else {
+                   System.out.println("nie rozumiem polecenia :) ");
+                   throw new java.lang.Error("blad");
+               }
                c.cryptfile(in,out,alg);
            }else if(x==2){
+               if(inFile.hasNextInt()) alg=al2;
+                else alg=al;
                c.decryptfile(in,out,alg);
            }else{
                System.out.println("nie rozumiem polecenia :) ");
