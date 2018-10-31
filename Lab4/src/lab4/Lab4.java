@@ -23,6 +23,7 @@ public class Lab4 {
         ROT11 al = new ROT11();  
         Polibiusz al2 = new Polibiusz();
         Cryptographer c = new Cryptographer();
+
         if(args.length==0){    // kod na wypadek braku podania parametrow przy wywolaniu, zeby pokazac ze i tak dziala xd 
             String path = new java.io.File(".").getCanonicalPath();
             String in = path+"/src/lab4/test.txt";
