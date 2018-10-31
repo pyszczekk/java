@@ -19,14 +19,8 @@ public class Lab4 {
      * @throws java.io.FileNotFoundException
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        // TODO code application logic here
-         String slowo ="test Karolina";
-        ROT11 al = new ROT11();
-        String wyn = al.crypt(slowo);
-        System.out.println(wyn + " ---- zakodowane : " +slowo);
-        slowo = al.decrypt(wyn);
-         System.out.println(wyn + " ---- odkodowane : " +slowo);
-         
+        
+        ROT11 al = new ROT11();       
         String path = new java.io.File(".").getCanonicalPath();
         Cryptographer c = new Cryptographer();
         String in = path+"/src/lab4/test.txt";
