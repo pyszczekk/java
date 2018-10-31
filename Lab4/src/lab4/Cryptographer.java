@@ -42,7 +42,6 @@ public static void decryptfile(String fileIn, String fileOut, Algorithm al ) thr
             while (line.hasNext()){
                 String word = line.next();
                 out.print(al.decrypt(word)+" ");
-          
             }
             out.println();
            }
