@@ -16,9 +16,9 @@ public class Lab5 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        String in ="gravitcy.txt";
+        String in ="gravity.txt";
         String out = "delayed.txt";
-        int del = -6000;
+        int del = 6000;
         int fps=60;
         String path ="/Users/pyszczekk/Desktop/wszystko/zabawa w studia/semestr III/java-git/java/Lab5/src/lab5/";
         MicroDVD microDVD = new MicroDVD();
