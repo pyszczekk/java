@@ -5,6 +5,7 @@
  */
 package shape;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 /**
@@ -34,7 +35,11 @@ public class Triangle extends Shape {
     
     @Override
     public void draw(Graphics g) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(a==0 || h==0) throw new UnsupportedOperationException("Wrong datas, I can't draw triangle."); //To change body of generated methods, choose Tools | Templates.
+        else{
+            g.setColor(Color.YELLOW);
+            g.fillPolygon(new int[] {this.x, this.x, this.x+(int)a}, new int[] {this.y, this.y-(int)h, this.y}, 3);
+        }
     }
 
     @Override

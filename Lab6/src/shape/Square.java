@@ -5,6 +5,7 @@
  */
 package shape;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 /**
@@ -26,7 +27,9 @@ public class Square extends Shape{
     public void draw(Graphics g) {
        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
        if(this.a==0)  throw new UnsupportedOperationException("You didn't enter a size, I can't draw it");
-       g.drawRect(x,y, (int)this.a, (int)this.a);
+       g.setColor(Color.CYAN);
+       g.fillRect(x,y, (int)this.a, (int)this.a);
+     //  g.drawRect(x,y, (int)this.a, (int)this.a);
     }
 
     @Override

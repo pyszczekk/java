@@ -37,7 +37,10 @@ public class Circle extends Shape{
     public void draw(Graphics g) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         if(this.r==0) throw new UnsupportedOperationException("You didn't enter a radius, I can't draw it");
-        g.drawOval(x, y, (int)this.r, (int)this.r);
+        g.setColor(Color.MAGENTA);
+        g.fillOval(x, y, (int)this.r, (int)this.r);
+        
+        //g.drawOval(x, y, (int)this.r, (int)this.r);
 
     }
 
