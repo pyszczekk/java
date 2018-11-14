@@ -52,7 +52,7 @@ public class MyPanel extends JPanel implements MouseListener, MouseMotionListene
     public void mousePressed(MouseEvent e) {
         mX=e.getX();
         mY=e.getY();
-        System.out.println("mousePressed");
+        //System.out.println("mousePressed");
     }
 
     @Override
