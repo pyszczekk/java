@@ -42,7 +42,6 @@ public class Draw extends JFrame{
         dp.getContentPane().add(d);
         dp.setSize(500, 450);
         dp.setVisible(true);
-      
         dp.addWindowListener(new WindowAdapter(){
             public void windowClosing(WindowEvent we){
                System.exit(0);
