@@ -36,6 +36,7 @@ public class MyPanel extends JPanel implements MouseListener, MouseMotionListene
             shape.draw(g);
         }
         mouseX=0; mouseY=0;
+       
     }
     public void paint(Graphics g){
         this.paintComponents(g);
@@ -44,51 +45,43 @@ public class MyPanel extends JPanel implements MouseListener, MouseMotionListene
 
      @Override
     public void mouseClicked(MouseEvent e) {
-      //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-      System.out.println("mouseClicked");
-    }
+      //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       }
 
     @Override
     public void mousePressed(MouseEvent e) {
         mX=e.getX();
         mY=e.getY();
-       // repaint();
-       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-       System.out.println("mousePressed");
+        System.out.println("mousePressed");
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        System.out.println("mouseReleased");
-        
-        mouseX=mX-e.getX();
-       mouseY=mY-e.getY();
-        System.out.println("x: "+mouseX+" y: "+mouseY);
+         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-      // System.out.println("mouseEntered");
+       //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates. 
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-       // System.out.println("mouseExited");
+       //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-       // System.out.println("mouseDragged");
+       mouseX=mX-e.getX();
+       mouseY=mY-e.getY();
+       mX=e.getX();
+       mY=e.getY();
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-       // System.out.println("mouseMoved");
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates. 
     }
   
     
