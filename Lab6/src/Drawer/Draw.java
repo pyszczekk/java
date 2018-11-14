@@ -26,18 +26,23 @@ public class Draw extends JFrame{
         c.setRad(150);
         Rectangle r = new Rectangle();
         r.setSize(206,113);
-        r.setX(200);
-        r.setY(200);
+        r.setX(230);
+        r.setY(300);
         Square s = new Square();
         s.setA(100);
-        Shape [] sh = new Shape [] {c,r,s};
+        s.setY(300);
+        s.setX(10);
+        Triangle t = new Triangle();
+        t.setA(100);
+        t.setH(150);
+        t.setX(300);
+        t.setY(200);
+        Shape [] sh = new Shape [] {c,r,s,t};
         d.setShapes(sh);
         dp.getContentPane().add(d);
         dp.setSize(500, 450);
         dp.setVisible(true);
-        //dp.add(new MouseEvents());
-       // dp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	//dp.setVisible(true);
+      
         dp.addWindowListener(new WindowAdapter(){
             public void windowClosing(WindowEvent we){
                System.exit(0);
