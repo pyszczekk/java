@@ -23,7 +23,7 @@ public class Draw extends JFrame{
         Circle c = new Circle();
         c.setX(20);
         c.setY(70);
-        c.setRad(150);
+        c.setRad(40);
         Rectangle r = new Rectangle();
         r.setSize(206,113);
         r.setX(230);

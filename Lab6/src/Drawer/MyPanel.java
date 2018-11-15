@@ -19,6 +19,10 @@ import shape.*;
 public class MyPanel extends JPanel implements MouseListener, MouseMotionListener{
     int mouseX, mX;
     int mouseY, mY;
+    boolean moving=false;
+    boolean clicked=false;
+    int cX, cY;
+    Shape moved;
     public MyPanel() {
 		addMouseListener(this);
 		addMouseMotionListener(this);
@@ -31,8 +35,17 @@ public class MyPanel extends JPanel implements MouseListener, MouseMotionListene
     public void paintComponents(Graphics g){
        
         for (Shape shape : shapes) {
-            shape.setX(shape.getX()-mouseX);
-            shape.setY(shape.getY()-mouseY);
+            if(clicked){
+               moving=shape.contain(cX,cY);
+            }
+            if(moving){
+                if(moved==null){
+                    moved=shape;
+                }
+                moved.setX(moved.getX()-mouseX);
+                moved.setY(moved.getY()-mouseY);
+               
+            }
             shape.draw(g);
         }
         mouseX=0; mouseY=0;
@@ -50,14 +63,21 @@ public class MyPanel extends JPanel implements MouseListener, MouseMotionListene
 
     @Override
     public void mousePressed(MouseEvent e) {
+        clicked=true;
         mX=e.getX();
         mY=e.getY();
+        cX=e.getX();
+        cY=e.getY();
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
          //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-      
+         moving = false;
+         moved=null;
+         clicked=false;
+         cX=0;
+         cY=0;
     }
 
     @Override
@@ -76,6 +96,8 @@ public class MyPanel extends JPanel implements MouseListener, MouseMotionListene
        mouseY=mY-e.getY();
        mX=e.getX();
        mY=e.getY();
+       cX=e.getX();
+       cY=e.getY();
     }
 
     @Override
