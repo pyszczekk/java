@@ -57,6 +57,12 @@ public class Rectangle extends Shape {
        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
        this.y=y;
     }
+
+    @Override
+    public boolean contain(int x, int y) {
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return(x>=this.x && y>=this.y && x<=this.x+(int)a && y<=this.y+(int)b);
+    }
    
     
 }

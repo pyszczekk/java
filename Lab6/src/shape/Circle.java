@@ -38,7 +38,7 @@ public class Circle extends Shape{
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         if(this.r==0) throw new UnsupportedOperationException("You didn't enter a radius, I can't draw it");
         g.setColor(Color.MAGENTA);
-        g.fillOval(x, y, (int)this.r, (int)this.r);
+        g.fillOval(x, y, 2*(int)this.r, 2*(int)this.r);
         
         //g.drawOval(x, y, (int)this.r, (int)this.r);
 
@@ -54,6 +54,12 @@ public class Circle extends Shape{
     public void setY(int y) {
         this.y=y;
        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean contain(int x, int y) {
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return ((x-(int)(this.x+this.r))*(x-(int)(this.x+this.r))+((y-(int)(this.y+this.r)))*((y-(int)(this.y+this.r)))<=this.r*this.r);
     }
     
 }

@@ -54,6 +54,18 @@ public class Triangle extends Shape {
       this.y=y;
     }
 
+    @Override
+    public boolean contain(int x, int y) {
+        int xa = this.x;
+        int xb=this.x+(int)a;
+        int ya=this.y-(int)h;
+        int yb = this.y;
+        
+        return((x>=this.x)&&(y<=this.y)&&((y-ya)*(xb-xa)-(yb-ya)*(x-xa)>=0));
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
+    }
+
 
     
 }

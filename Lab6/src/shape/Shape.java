@@ -19,4 +19,5 @@ public abstract class Shape {
     public int getX(){return x;};
     public int getY(){return y;};
     public abstract void draw(Graphics g);
+    public abstract boolean contain(int x, int y);
 }
