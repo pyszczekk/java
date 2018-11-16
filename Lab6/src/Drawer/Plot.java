@@ -41,8 +41,8 @@ public class Plot extends JPanel {
         g2.drawLine(0, h-PAD, w, h-PAD);
         g2.drawLine(w-PAD+10, h-PAD, w-PAD, h-PAD-5);
         g2.drawLine(w-PAD+10, h-PAD, w-PAD, h-PAD+5);
-        double xScale = (w - 2*PAD)/300;
-        double maxValue = 500.0;
+        double xScale = (w - 2*PAD)/10;
+        double maxValue = 100.0;
         double yScale = (h - 2*PAD)/300;
         // The origin location.
         int x0 = PAD;
@@ -50,14 +50,12 @@ public class Plot extends JPanel {
         g2.setPaint(Color.red);
         System.out.println(xScale+" "+yScale);
         for(int j = 0; j < data.length; j++) {
-            int XX = (int)xScale*j;
-            int x = x0 + XX;
-            int y = y0 - (int)yScale  *((XX*XX*XX)/3000 -(XX*XX)/2000 - 4*XX);
-            System.out.println("x: "+x+" y: "+y);
             
+            int x = x0 + (int)xScale*j;
+            int y = y0 - (int)yScale  *(j*j*j-j*j-4*j);
+            System.out.println("x: "+x+" y: "+y);
             data[j][0]=x;
             data[j][1]=y;
-            
         }
          for(int j = 1; j < data.length; j++) {
              g2.drawLine(data[j-1][0],data[j-1][1], data[j][0],data[j][1]);
