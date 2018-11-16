@@ -21,7 +21,6 @@ public class Plot extends JPanel {
     final int PAD = 10;
   
     @Override
-    @SuppressWarnings("empty-statement")
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
@@ -52,7 +51,7 @@ public class Plot extends JPanel {
         for(int j = 0; j < data.length; j++) {
             
             int x = x0 + (int)xScale*j;
-            int y = y0 - (int)yScale  *(j*j*j-j*j-4*j);
+            int y = y0 - (int)yScale  *(j*j*j-j*j-5*j);
             System.out.println("x: "+x+" y: "+y);
             data[j][0]=x;
             data[j][1]=y;
