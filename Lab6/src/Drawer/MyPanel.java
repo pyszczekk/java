@@ -46,15 +46,16 @@ public class MyPanel extends JPanel implements MouseListener, MouseMotionListene
                 }
             }
         }
-         for (Shape shape : shapes) {
-             shape.draw(g);
-         }
-         if(moving){
+        if(moving){
                 
                 moved.setX(moved.getX()-mouseX);
                 moved.setY(moved.getY()-mouseY);
                
             }
+         for (Shape shape : shapes) {
+             shape.draw(g);
+         }
+         
         mouseX=0; mouseY=0;
        
     }
