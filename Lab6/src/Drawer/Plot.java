@@ -112,16 +112,17 @@ public class Plot extends JPanel {
              int _y=y0 -data[j-1][1]*(int)yScale;
              int x_=x0 + (int)xScale*data[j][0];
              int y_=y0 -data[j][1]*(int)yScale;
+             g2.setColor(Color.RED);
              g2.drawLine(_x,_y, x_,y_);
-           //QuadCurve2D q = new QuadCurve2D.Float();
-            // draw QuadCurve2D.Float with set coordinates
-            //q.setCurve(_x, _y, (x_ -_x/2), (y_-_y/2), x_, y_);
-            //g2.draw(q);
+             g2.setColor(Color.BLACK);
+             g2.drawLine(_x,h/2+2,_x,h/2-2);
+             g2.drawLine(x_,h/2+2,x_,h/2-2);
+             g2.drawLine(w/2+2,_y,w/2-2,_y);
+              g2.drawLine(w/2+2,y_,w/2-2,y_);
          }
     }
     public double function(int x){
         return(a5*Math.pow(x,5)+a4*Math.pow(x,4)+a3*Math.pow(x,3)+a2*Math.pow(x,2)+a1*x+a0);
-        
     }
  
 }
