@@ -55,18 +55,14 @@ public class Plot extends JPanel {
         xScale = (w - 2*PAD)/300;
         double maxValue = 100.0;
         yScale = (h - 2*PAD)/300;
-        // The origin location.
         int x0 = PAD;
         int y0 = h-PAD;
         g2.setPaint(Color.red);
-        //System.out.println(xScale+" "+yScale);
         if(a5!=0 || a4!=0 || a3!=0 || a2!=0 || a1!=0 || a0!=0)paintPlot(g2);
-        //g2.scale(2.0,2.0);
     }
     @Override
     public void paint(Graphics g){
         this.paintComponent(g);
-        //System.out.println("maluje sie");
         repaint();
     }
     public void setA(int b5,int b4, int b3, int b2, int b1, int b0){
@@ -106,7 +102,7 @@ public class Plot extends JPanel {
         yScale=(h/2 - 20)/max;
         if(yScale==0)yScale=1;
         if(xScale==0)xScale=1;
-       // System.out.println(xScale+ " " + yScale + " max: "+max);
+       
          for(int j = 1; j < xEnd-xStart+1; j++) {
              int _x=x0 + (int)xScale*data[j-1][0];
              int _y=y0 -data[j-1][1]*(int)yScale;

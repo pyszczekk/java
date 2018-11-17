@@ -27,6 +27,7 @@ public class DrawPlot extends JFrame {
         DrawPlot d = new DrawPlot();
         Plot plotPanel = new Plot();
         JPanel main = new JPanel();
+        //panel z labelami do textfieldow
         JLabel l1 = new JLabel("<html>W(x) =a<sub>5</sub>x<sup>5</sup>+a<sub>4</sub>x<sup>4</sup>+a<sub>3</sub>x<sup>3</sup>+a<sub>2</sub>x<sup>2</sup>+a<sub>1</sub>x+a<sub>0</sub></html>", JLabel.CENTER);
         Font labelFont = l1.getFont();
         l1.setFont(new Font(labelFont.getName(), Font.PLAIN, 18));
@@ -40,6 +41,7 @@ public class DrawPlot extends JFrame {
         JLabel labelList []={al5,al4,al3,al2,al1,al0};
         JPanel aPanel=new JPanel();
         JPanel aData = new JPanel();
+        //panel na przedzial X
         JPanel limPanel = new JPanel();
         JLabel limlabel = new JLabel("enter the boundaries of x-axis",JLabel.LEFT);
         limlabel.setLocation(0,0);
@@ -69,6 +71,7 @@ public class DrawPlot extends JFrame {
         });
         limPanel.add(lim1);
         limPanel.add(lim2);
+        //panel z wspolczynnikami a
         JTextField ad5=new JTextField();
         JTextField ad4=new JTextField();
         JTextField ad3=new JTextField();
@@ -94,6 +97,7 @@ public class DrawPlot extends JFrame {
             aData.add(aFields[i]);
             
         }
+        //button + rysowanie;
         JPanel save = new JPanel();
         JButton btn = new JButton("draw");
         btn.setPreferredSize(new Dimension(200,30));
