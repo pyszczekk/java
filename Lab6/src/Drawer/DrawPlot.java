@@ -50,10 +50,9 @@ public class DrawPlot extends JFrame {
         lim1.setPreferredSize(new Dimension(40,30));
         JTextField lim2=new JTextField();
         lim2.setPreferredSize(new Dimension(40,30));
-        lim1.addKeyListener(new KeyAdapter() {
+        lim1.addKeyListener(new KeyAdapter() {  //blokada na literki
             public void keyTyped(KeyEvent e) {
                 char caracter = e.getKeyChar();
-                //System.out.println(caracter);
                 if (((caracter < '0') || (caracter > '9'))
                         && (caracter != '-')) {
                     e.consume();
@@ -61,7 +60,7 @@ public class DrawPlot extends JFrame {
             }
         });
         lim2.addKeyListener(new KeyAdapter() {
-            public void keyTyped(KeyEvent e) {
+            public void keyTyped(KeyEvent e) {      //blokada na literki
                 char caracter = e.getKeyChar();
                 if (((caracter < '0') || (caracter > '9'))
                         && (caracter != '-')) {
@@ -120,7 +119,7 @@ public class DrawPlot extends JFrame {
             
           };
 
-            private int getNumber(String text, int x) {
+            private int getNumber(String text, int x) { //pobranie danych z textfieldow
                 boolean minus=false;
                     if(text.charAt(0)=='-'){
                                 text=text.replace("-", "");
@@ -134,6 +133,8 @@ public class DrawPlot extends JFrame {
             }
              
         });
+        
+        //dodanie i ustawienie we framie
         save.add(btn);
         save.setBounds(0,0,200,30);
         save.setLocation(20,320);
