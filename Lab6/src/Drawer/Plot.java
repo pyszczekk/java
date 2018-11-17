@@ -6,9 +6,12 @@
 package Drawer;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import static java.lang.Math.sqrt;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -52,6 +55,7 @@ public class Plot extends JPanel {
             
             int x = x0 + (int)xScale*j;
             int y = y0 - (int)yScale  *(j*j*j-j*j-5*j);
+            //int y = y0 - (int)yScale*(int)(sqrt(1-j*j));
             System.out.println("x: "+x+" y: "+y);
             data[j][0]=x;
             data[j][1]=y;
@@ -62,12 +66,5 @@ public class Plot extends JPanel {
         //g2.scale(2.0,2.0);
     }
   
-    public static void main(String[] args) {
-        JFrame f = new JFrame();
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.getContentPane().add(new Plot());
-        f.setSize(400,400);
-        f.setLocation(200,200);
-        f.setVisible(true);
-    }
+    
 }
