@@ -32,7 +32,13 @@ import javafx.stage.Stage;
 
 import java.io.FileInputStream;
 import javafx.event.EventType;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.*;
+import javafx.scene.layout.StackPane;
 import javax.swing.text.View;
 
 
@@ -42,6 +48,7 @@ import javax.swing.text.View;
  */
 public class Gallery extends Application{
     Stage stage;
+    ImageView main;
     @Override
     public void start(Stage primaryStage) throws Exception {
        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -52,8 +59,9 @@ public class Gallery extends Application{
    
     stage = primaryStage;
     ScrollPane root = new ScrollPane();
+    TilePane centeredLayout = new TilePane();
     TilePane tile = new TilePane();
-    
+    TilePane tile2 = new TilePane();
     for(final File file: listOfFiles){
         //System.out.println(file);
        
@@ -65,20 +73,32 @@ public class Gallery extends Application{
         FileInputStream input = new FileInputStream(file);
         
         Image image = new Image(input);
-
         ImageView imageView = new ImageView(image);
         //imageView = new ImageView("/Users/pyszczekk/Desktop/wx.png");
-        imageView.setFitWidth(100);
+        //imageView.setFitWidth(250);
         imageView.setFitHeight(100);
         imageView.setPreserveRatio(true);
+        imageView.setPickOnBounds(true);
+        
         imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
             @Override
             public void handle(MouseEvent event) {
-             System.out.println(imageView.getImage());
+           
+            main= new ImageView(imageView.getImage());
+            main.setFitWidth(500);
+            main.setPreserveRatio(true);
+            tile2.setPrefColumns(1);
+            tile2.setPrefRows(1);
+            tile2.getChildren().clear();
+             tile2.getChildren().addAll(main);
+           centeredLayout.getChildren().add(tile2);
+            
             }
         });
+        
         tile.getChildren().addAll(imageView);
+       
         }
         }
     }
@@ -88,16 +108,45 @@ public class Gallery extends Application{
         //image = ImageIO.read("/Users/pyszczekk/Desktop/wx.png");
         
     
-        root.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER); // Horizontal
+        root.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED); // Horizontal
         root.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED); // Vertical scroll bar
-        root.setFitToWidth(true);
+        //root.setFitToWidth(false);
+  
+        tile2.setPrefColumns(1);
+        tile2.setPrefRows(1);
+        ImageView im =  new ImageView("file:/Users/pyszczekk/Desktop/wx.png");
+        //im.setFitHeight(400);
+        //im.setFitWidth();
+        im.setPreserveRatio(true);
+       
+        //tile2.getChildren().addAll(im);
+        //tile2.getChildren().add(main);
+       // tile2.
+        tile.setPrefColumns(1);
+        
+        //tile.scaleShapeProperty();
+        //root.setFitWidth(true);
+        root.setMaxWidth(300);
         root.setContent(tile);
+        //tile2.setVisible(true);
+        //tile2.setTranslateX(x);
+        TilePane.setAlignment(im, Pos.TOP_RIGHT);
+        //root.setVisible(true);
+        root.setFitToWidth(true);
+        //root.setTranslateX(-x);
+        centeredLayout.getChildren().addAll(root, tile2);
+      // centeredLayout.setPrefSize(1920, 1080);
+       
+        
+       
         
         primaryStage.setWidth(Screen.getPrimary().getVisualBounds().getWidth());
         primaryStage.setHeight(Screen.getPrimary().getVisualBounds()
                 .getHeight());
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(centeredLayout);
+ 
         primaryStage.setScene(scene);
+       
         primaryStage.show();
     }
     
