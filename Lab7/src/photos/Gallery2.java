@@ -72,7 +72,7 @@ public class Gallery2 extends Application{
         Image image = new Image(input);
         ImageView imageView = new ImageView(image);
 
-        imageView.setFitHeight(100);
+        imageView.setFitHeight(50);
         imageView.setPreserveRatio(true);
         imageView.setPickOnBounds(true);
         
@@ -82,6 +82,7 @@ public class Gallery2 extends Application{
             public void handle(MouseEvent event) {
            
             main= new ImageView(imageView.getImage());
+           // main.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth()/2);
             if(imageView.getImage().getHeight()>imageView.getImage().getWidth()){
                  main.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
             }else{
@@ -93,9 +94,9 @@ public class Gallery2 extends Application{
             tile2.getChildren().clear();
              tile2.getChildren().addAll(main);
              
-             TilePane.setAlignment(main,Pos.CENTER);
+             TilePane.setAlignment(main,Pos.TOP_LEFT);
            centeredLayout.getChildren().add(tile2);
-            
+           
             }
         });
         
@@ -107,12 +108,12 @@ public class Gallery2 extends Application{
         
         root.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED); // Horizontal
         root.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED); // Vertical scroll bar
-        tile2.setPrefColumns(1);
-        tile2.setPrefRows(1);
+       // tile2.setPrefColumns(1);
+        //tile2.setPrefRows(1);
         
-        tile.setPrefColumns(1);
+       // tile.setPrefColumns(1);
         
-        root.setMaxWidth(300);
+        //root.setMaxWidth(300);
         root.setContent(tile);
        
         centeredLayout.getChildren().addAll(root, tile2);
