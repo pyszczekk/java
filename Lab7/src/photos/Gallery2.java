@@ -43,7 +43,8 @@ public class Gallery2 extends Application{
     public void start(Stage primaryStage) throws Exception {
         
        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        String path = "/Users/pyszczekk/Desktop/wszystko/all";
+      
+       String path = "/Users/pyszczekk/Desktop/wszystko/all";
         DirectoryChooser directoryChooser = new DirectoryChooser();
         File selectedDirectory = directoryChooser.showDialog(primaryStage);
 
@@ -51,7 +52,8 @@ public class Gallery2 extends Application{
               path = "/Users/pyszczekk/Desktop/wszystko/all";
         }else{
             path=selectedDirectory.getAbsolutePath();
-        }      
+        }
+         primaryStage.setTitle("Gallery of: "+path);
     File folder = new File(path);
     File[] listOfFiles = folder.listFiles();
    
@@ -89,13 +91,13 @@ public class Gallery2 extends Application{
             main.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth()/2);
             }
             main.setPreserveRatio(true);
-            main.setStyle("-fx-background-color: rgb(35, 39, 50);");
+           
         
             tile2.setPrefColumns(1);
             tile2.setPrefRows(1);
             tile2.getChildren().clear();
              tile2.getChildren().addAll(main);
-             tile2.setStyle("-fx-background-color: rgb(35, 39, 50);");
+           
         
             // TilePane.setAlignment(main,Pos.TOP_LEFT);
            centeredLayout.getChildren().add(tile2);
@@ -115,8 +117,7 @@ public class Gallery2 extends Application{
         root.setContent(tile);
         
         centeredLayout.getChildren().addAll(root, tile2);
-        //root.setStyle("-fx-background-color: rgb(35, 39, 50);");
-        centeredLayout.setStyle("-fx-background-color: rgb(35, 39, 50);");
+
         primaryStage.setWidth(Screen.getPrimary().getVisualBounds().getWidth());
         primaryStage.setHeight(Screen.getPrimary().getVisualBounds()
                 .getHeight());
