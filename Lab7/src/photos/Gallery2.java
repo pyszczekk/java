@@ -27,6 +27,7 @@ import static javafx.application.Application.launch;
 
 import javafx.geometry.Pos;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.DirectoryChooser;
 
 
@@ -71,7 +72,6 @@ public class Gallery2 extends Application{
         
         Image image = new Image(input);
         ImageView imageView = new ImageView(image);
-
         imageView.setFitHeight(50);
         imageView.setPreserveRatio(true);
         imageView.setPickOnBounds(true);
@@ -89,38 +89,38 @@ public class Gallery2 extends Application{
             main.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth()/2);
             }
             main.setPreserveRatio(true);
+            main.setStyle("-fx-background-color: rgb(35, 39, 50);");
+        
             tile2.setPrefColumns(1);
             tile2.setPrefRows(1);
             tile2.getChildren().clear();
              tile2.getChildren().addAll(main);
-             
-             TilePane.setAlignment(main,Pos.TOP_LEFT);
+             tile2.setStyle("-fx-background-color: rgb(35, 39, 50);");
+        
+            // TilePane.setAlignment(main,Pos.TOP_LEFT);
            centeredLayout.getChildren().add(tile2);
            
             }
         });
         
         tile.getChildren().addAll(imageView);
-       
+       // tile.setStyle("-fx-background-color: rgb(35, 39, 50);");
         }
         }
     }
         
         root.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED); // Horizontal
         root.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED); // Vertical scroll bar
-       // tile2.setPrefColumns(1);
-        //tile2.setPrefRows(1);
-        
-       // tile.setPrefColumns(1);
-        
-        //root.setMaxWidth(300);
+
         root.setContent(tile);
-       
+        
         centeredLayout.getChildren().addAll(root, tile2);
+        //root.setStyle("-fx-background-color: rgb(35, 39, 50);");
+        centeredLayout.setStyle("-fx-background-color: rgb(35, 39, 50);");
         primaryStage.setWidth(Screen.getPrimary().getVisualBounds().getWidth());
         primaryStage.setHeight(Screen.getPrimary().getVisualBounds()
                 .getHeight());
-        Scene scene = new Scene(centeredLayout);
+        Scene scene = new Scene(centeredLayout, Color.rgb(35, 39, 50));
  
         primaryStage.setScene(scene);
        
