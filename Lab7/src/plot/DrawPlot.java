@@ -105,8 +105,6 @@ public class DrawPlot extends Application {
         a0.setMaxWidth(42);
        
         TilePane aField = new TilePane();
-        //aField.getChildren().addAll(l,a5,l2,a4,l3,a3,l4,a2,l5,a1,l6,a0);
-        //aField.setTranslateX(120);
         aField.setTranslateY(20);
         StackPane lay = new StackPane();
         lay.setPrefHeight(150);
@@ -114,7 +112,6 @@ public class DrawPlot extends Application {
         
         aField.setPrefWidth(500);
         aField.getChildren().addAll(l,a5,l2,a4,l3,a3,l4,a2,l5,a1,l6,a0);
-       // aField.getChildren().addAll(new Label("xMin:"),xMin,new Label("xMax:"),xMax,new Label("Unit:"),d,color);
         lay.getChildren().addAll(aField);
         
         
@@ -129,9 +126,7 @@ public class DrawPlot extends Application {
         this.a2=Double.parseDouble(a2.getText().replace(",","."));
         this.a1=Double.parseDouble(a1.getText().replace(",","."));
         this.a0=Double.parseDouble(a0.getText().replace(",","."));
-        //dark=color.isSelected();
-        //this.x1=Integer.parseInt(x1.getText());
-        //this.x2=Integer.parseInt(x2.getText());
+       
         }
         catch(NumberFormatException e){
               draw=false;
@@ -144,6 +139,7 @@ public class DrawPlot extends Application {
         if(y> maxY)maxY=y;
         }
     }
+    
     @Override
     public void start(Stage primaryStage) {
         
@@ -170,7 +166,7 @@ public class DrawPlot extends Application {
                 (int)-maxY,(int)maxY, 0.2
         );}
         Plot plot = new Plot(
-                x -> a5 * (x*x*x*x*x) + a4 * (x*x*x*x) + a3 * (x*x*x) + a2 * (x*x) + a1 * x + a0,
+                x -> a5 * pow(x,5) + a4 * pow(x,4) + a3 * pow(x,3) + a2 * pow(x,2) + a1 * x + a0,
                 this.x1, this.x2, 0.1,
                 axes,
                 dark
@@ -188,7 +184,7 @@ public class DrawPlot extends Application {
             primaryStage.setScene(new Scene(root, Color.rgb(240, 255, 234)));
         }
 
-        primaryStage.setTitle("rysujemy wykres");
+        primaryStage.setTitle("Plot");
        // primaryStage.setScene(new Scene(root, Color.rgb(35, 39, 50)));
         primaryStage.show();
         }else{
