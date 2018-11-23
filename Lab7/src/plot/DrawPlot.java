@@ -58,7 +58,7 @@ public class DrawPlot extends Application {
         StackPane lay = new StackPane();
         lay.getChildren().add(limField);
         lay.setPrefHeight(200);
-        lay.setPrefWidth(500);
+        lay.setPrefWidth(600);
         a.getDialogPane().setContent(lay);
         
         
