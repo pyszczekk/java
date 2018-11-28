@@ -39,6 +39,8 @@ public class AppController implements Initializable {
     int l=0;
     boolean connection=false;
     private Statement stmt=null;
+    NewBook book;
+    String ibsn,title,author,year;
     @FXML
     private ChoiceBox<String> sortChoice;
     private ListView<?> res;
@@ -109,6 +111,7 @@ public class AppController implements Initializable {
 
     @FXML
     private void showAll(ActionEvent event) {
+        //System.out.println("show");
         try {
             stmt = db.getConnection().createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM books;");
@@ -143,6 +146,20 @@ public class AppController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(AppController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void addNewBook(ActionEvent event) throws IOException {
+        
+        Parent root=  FXMLLoader.load(Main.class.getResource("AddBook.fxml"));
+        Scene newScene = new Scene(root);
+       
+        System.out.println(root.getChildrenUnmodifiable().get(5));
+        Stage newStage = new Stage();
+        newStage.setScene(newScene);
+        newStage.show();
+        
+       
     }
     
 }
