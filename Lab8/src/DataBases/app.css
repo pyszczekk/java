@@ -1,0 +1,36 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+   -fx-font-weight:600;
+}
+.choice-box > *{
+   /* -fx-background-color:red;*/
+}
+.button{
+    -fx-background-color:#ABD5E1; 
+}
+.button:disabled{
+    -fx-background-color:#a7a7a7; 
+}
+.button:hover{
+    -fx-background-color:#71BBD0;
+}
+.check-box:selected .mark {
+    -fx-background-color: #86E1EC;
+}
+.check-box .box{
+     -fx-background-color: #c9c9c9;
+}
+.check-box:selected .box {
+    -fx-background-color: white;
+}
+
+
+.label{
+    -fx-display:block;
+}
+.tile-pane{
+    -fx-background-color:red;
+}
