@@ -146,6 +146,7 @@ public class AppController implements Initializable {
                
                 main.getChildren().add(pane);
                 main.setVgap(15);
+                main.setStyle("-fx-background-color: rgba(255,255,255,0.8);");
                 main.setPrefColumns(1);
             }
             scrollPane.setContent(main);
