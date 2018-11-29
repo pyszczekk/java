@@ -36,3 +36,12 @@
 .tile-pane{
     -fx-background-color:red;
 }
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color:rgba(255,255,255,0.8);
+}
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #71BBD0;
+    -fx-background-radius: 5em;
+    
+}
