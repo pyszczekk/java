@@ -89,31 +89,13 @@ public class AppController implements Initializable {
 
     @FXML
     private void connectDB(ActionEvent event) throws InterruptedException, IOException {
-        if(l<2 && !connection){
-            l+=1;
-            connLabel.setText("connection attempt "+l);
-            db.connection();
-            connection=db.isConnected();
+        connectButton.setText("connecting...");
+        if(l==0){
+        l++;
+        connectButton.fire();
         }else{
-            
-            Stage stage = (Stage) connectButton.getScene().getWindow();
-            stage.close();
-            Parent root=  FXMLLoader.load(Main.class.getResource("Failure.fxml"));
-            Scene newScene = new Scene(root);
-            Stage newStage = new Stage();
-            newStage.setScene(newScene);
-            newStage.show();
-             
+           connecting();
         }
-        if(connection){
-            connLabel.setText("connection succeeded ");
-            showButton.setDisable(false);
-            addBookBtn.setDisable(false);
-            searchButton.setDisable(false);
-            sortButton.setDisable(false);
-            l=0;
-            connectButton.setDisable(true);
-        }   
         
     }
 
@@ -179,7 +161,7 @@ public class AppController implements Initializable {
                  rs = stmt.executeQuery("SELECT * FROM books WHERE isbn="+IsbnName.getText()+" AND author LIKE '%"+AuthorName.getText()+"';" );
             }
             else if(checkA.isSelected()){
-                  rs = stmt.executeQuery("SELECT * FROM books WHERE author LIKE '%"+AuthorName.getText()+"';" );
+                  rs = stmt.executeQuery("SELECT * FROM books WHERE author LIKE '% "+AuthorName.getText()+"';" );
             }else if(checkI.isSelected()){
                  rs = stmt.executeQuery("SELECT * FROM books WHERE isbn="+IsbnName.getText()+";" );
             };
@@ -216,5 +198,35 @@ public class AppController implements Initializable {
             Logger.getLogger(AppController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
+    private void connecting() throws InterruptedException, IOException{
+         while(l<=3 && !connection){
+                l+=1;
+                System.out.println("łącze ....");
+                db.connection();
+                connection=db.isConnected();
+                TimeUnit.SECONDS.sleep(2);
+            }
+            if(l>2 && !connection){
+                Stage stage = (Stage) connectButton.getScene().getWindow();
+                stage.close();
+                Parent root=  FXMLLoader.load(Main.class.getResource("Failure.fxml"));
+                Scene newScene = new Scene(root);
+                Stage newStage = new Stage();
+                newStage.setScene(newScene);
+                newStage.show(); 
+            }
+            if(connection){
+                connLabel.setText("connection succeeded ");
+                showButton.setDisable(false);
+                addBookBtn.setDisable(false);
+                searchButton.setDisable(false);
+                sortButton.setDisable(false);
+                connectButton.setDisable(true);
+            }
+    }
+
+    @FXML
+    private void sort(ActionEvent event) {
+    }
 }

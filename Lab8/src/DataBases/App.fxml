@@ -28,7 +28,7 @@
                   </ChoiceBox>
                   <CheckBox layoutX="346.0" layoutY="38.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="125.0" text="descending" />
                   <Label layoutX="23.0" layoutY="35.0" prefHeight="23.0" prefWidth="133.0" style="-fx-font-size: 18px;" text="Sort results" />
-                  <Button fx:id="sortButton" layoutX="471.0" layoutY="33.0" mnemonicParsing="false" text="Sort" />
+                  <Button fx:id="sortButton" layoutX="471.0" layoutY="33.0" mnemonicParsing="false" onAction="#sort" text="Sort" />
                </children>
             </Pane>
             <ScrollPane fx:id="scrollPane" hbarPolicy="AS_NEEDED" prefHeight="443.0" prefWidth="567.0" vbarPolicy="ALWAYS" />
