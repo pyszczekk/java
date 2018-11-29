@@ -50,6 +50,14 @@ public class AddBookController implements Initializable {
                 }
             }
         });
+        year.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+           public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                 if (!newValue.matches("\\d{0,4}?")) {
+                    year.setText(oldValue);
+                }
+            }
+        });
     }    
 
     @FXML

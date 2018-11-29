@@ -10,12 +10,14 @@
 }
 .button{
     -fx-background-color:#ABD5E1; 
+    -fx-cursor: hand;
 }
 .button:disabled{
     -fx-background-color:#a7a7a7; 
 }
 .button:hover{
     -fx-background-color:#71BBD0;
+    -fx-cursor: hand;
 }
 .check-box:selected .mark {
     -fx-background-color: #86E1EC;
