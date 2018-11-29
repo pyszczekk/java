@@ -12,6 +12,8 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -40,6 +42,14 @@ public class AddBookController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        isbn.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+           public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                 if (!newValue.matches("\\d{0,13}?")) {
+                    isbn.setText(oldValue);
+                }
+            }
+        });
     }    
 
     @FXML

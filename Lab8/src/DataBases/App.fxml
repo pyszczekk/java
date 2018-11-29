@@ -26,7 +26,7 @@
                        
                     </items>
                   </ChoiceBox>
-                  <CheckBox layoutX="346.0" layoutY="38.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="125.0" text="descending" />
+                  <CheckBox fx:id="descSort" layoutX="346.0" layoutY="38.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="125.0" text="descending" />
                   <Label layoutX="23.0" layoutY="35.0" prefHeight="23.0" prefWidth="133.0" style="-fx-font-size: 18px;" text="Sort results" />
                   <Button fx:id="sortButton" layoutX="471.0" layoutY="33.0" mnemonicParsing="false" onAction="#sort" text="Sort" />
                </children>
@@ -37,16 +37,16 @@
       <Pane layoutX="567.0" layoutY="29.0" prefHeight="571.0" prefWidth="237.0">
          <children>
             <Button fx:id="showButton" layoutX="52.0" layoutY="45.0" mnemonicParsing="false" onAction="#showAll" prefHeight="42.0" prefWidth="133.0" text="Show all datas" />
-            <Button fx:id="addBookBtn" layoutX="52.0" layoutY="106.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="133.0" onAction="#addNewBook" text="Add new book" />
+            <Button fx:id="addBookBtn" layoutX="52.0" layoutY="106.0" mnemonicParsing="false" onAction="#addNewBook" prefHeight="42.0" prefWidth="133.0" text="Add new book" />
             <Label layoutX="74.0" layoutY="240.0" prefHeight="20.0" prefWidth="102.0" style="-fx-font-size: 16px;" text="Search Panel">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <CheckBox layoutX="32.0" layoutY="277.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="93.0" fx:id="checkA" text="author" />
-            <CheckBox layoutX="32.0" layoutY="365.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="76.0" fx:id="checkI" text="isbn" />
-            <TextField layoutX="33.0" layoutY="311.0" style="-fx-background-color: white;"  fx:id="AuthorName" />
-            <TextField layoutX="33.0" layoutY="392.0" style="-fx-background-color: white;" fx:id="IsbnName" />
+            <CheckBox fx:id="checkA" layoutX="32.0" layoutY="277.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="93.0" text="author" />
+            <CheckBox fx:id="checkI" layoutX="32.0" layoutY="365.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="76.0" text="isbn" />
+            <TextField fx:id="AuthorName" layoutX="33.0" layoutY="311.0" style="-fx-background-color: white;" />
+            <TextField fx:id="IsbnName" layoutX="33.0" layoutY="392.0" style="-fx-background-color: white;" />
             <Button fx:id="searchButton" layoutX="87.0" layoutY="446.0" mnemonicParsing="false" onAction="#searchBooks" text="Search" />
          </children>
       </Pane>

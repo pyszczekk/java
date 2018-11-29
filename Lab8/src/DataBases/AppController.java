@@ -19,7 +19,10 @@ import java.sql.*;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventType;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -40,7 +43,9 @@ import javafx.stage.*;
 public class AppController implements Initializable {
     int l=0;
     boolean connection=false;
+    boolean search = false;
     private Statement stmt=null;
+    ResultSet rs;
     NewBook book;
     String ibsn,title,author,year;
     @FXML
@@ -70,6 +75,8 @@ public class AppController implements Initializable {
     private TextField AuthorName;
     @FXML
     private TextField IsbnName;
+    @FXML
+    private CheckBox descSort;
     /**
      * Initializes the controller class.
      * @param url
@@ -79,11 +86,19 @@ public class AppController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        sortChoice.setItems(FXCollections.observableArrayList("IBSN", "Title","Author","year"));
+        sortChoice.setItems(FXCollections.observableArrayList("ISBN", "Title","Author","year"));
         showButton.setDisable(true);
         addBookBtn.setDisable(true);
         searchButton.setDisable(true);
         sortButton.setDisable(true);
+        IsbnName.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+           public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                 if (!newValue.matches("\\d{0,13}?")) {
+                    IsbnName.setText(oldValue);
+                }
+            }
+        });
         
     }    
 
@@ -103,8 +118,9 @@ public class AppController implements Initializable {
     private void showAll(ActionEvent event) {
         //System.out.println("show");
         try {
+            search=false;
             stmt = db.getConnection().createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM books;");
+            rs = stmt.executeQuery("SELECT * FROM books;");
             TilePane main = new TilePane();
             while(rs.next()){
                 TilePane pane=new TilePane();
@@ -155,8 +171,9 @@ public class AppController implements Initializable {
     @FXML
     private void searchBooks(ActionEvent event) {
         try {
+            search =true;
             stmt = db.getConnection().createStatement();
-            ResultSet rs=null;
+            rs=null;
             if(checkA.isSelected() && checkI.isSelected()){
                  rs = stmt.executeQuery("SELECT * FROM books WHERE isbn="+IsbnName.getText()+" AND author LIKE '%"+AuthorName.getText()+"';" );
             }
@@ -228,5 +245,81 @@ public class AppController implements Initializable {
 
     @FXML
     private void sort(ActionEvent event) {
+        try {
+            stmt = db.getConnection().createStatement();
+            rs=null;
+            if(sortChoice.getSelectionModel().getSelectedItem()!=null){
+                String field=sortChoice.getSelectionModel().getSelectedItem();
+                if(search){
+                if(checkA.isSelected() && checkI.isSelected()){
+                    if(descSort.isSelected()){
+                         rs = stmt.executeQuery("SELECT * FROM books WHERE isbn="+IsbnName.getText()+" AND author LIKE '%"+AuthorName.getText()+"' ORDER BY "+field+" DESC;" );
+               
+                    }else{
+                        rs = stmt.executeQuery("SELECT * FROM books WHERE isbn="+IsbnName.getText()+" AND author LIKE '%"+AuthorName.getText()+"' ORDER BY "+field+";" );
+               
+                    }
+                // rs = stmt.executeQuery("SELECT * FROM books WHERE isbn="+IsbnName.getText()+" AND author LIKE '%"+AuthorName.getText()+"';" );
+                }
+                else if(checkA.isSelected()){
+                    if(descSort.isSelected()){
+                         rs = stmt.executeQuery("SELECT * FROM books WHERE author LIKE '% "+AuthorName.getText()+"' ORDER BY "+field+" DESC;" );
+               
+                    }else{
+                         rs = stmt.executeQuery("SELECT * FROM books WHERE author LIKE '% "+AuthorName.getText()+"' ORDER BY "+field+" ;" );
+               
+                    }
+                     // rs = stmt.executeQuery("SELECT * FROM books WHERE author LIKE '% "+AuthorName.getText()+"';" );
+                }else if(checkI.isSelected()){
+                    if(descSort.isSelected()){
+                        rs = stmt.executeQuery("SELECT * FROM books WHERE isbn="+IsbnName.getText()+" ORDER BY "+field+" DESC;" );
+                    }else{
+                      rs = stmt.executeQuery("SELECT * FROM books WHERE isbn="+IsbnName.getText()+" ORDER BY "+field+";" );
+                    }
+                }
+                }
+                else{
+                   if(descSort.isSelected()){
+                        rs = stmt.executeQuery("SELECT * FROM books ORDER BY "+field+" DESC;" );
+                    }else{
+                      rs = stmt.executeQuery("SELECT * FROM books ORDER BY "+field+";" );
+                    } 
+                }
+               // if ("IBN".equals(field))  field="isbn";
+                
+            }
+            
+           
+            TilePane main = new TilePane();
+            while(rs.next()){
+                TilePane pane=new TilePane();
+                Label isbn =new Label(rs.getString(1));
+                isbn.setPrefWidth(507);
+                isbn.setAlignment(Pos.CENTER);
+                isbn.setStyle("-fx-font-weight:bold;");
+                Label title =new Label(rs.getString(2));
+                title.setAlignment(Pos.CENTER);
+                title.setPrefWidth(507);
+                Label author =new Label(rs.getString(3));
+                author.setAlignment(Pos.CENTER);
+                author.setPrefWidth(507);
+                Label year =new Label(rs.getString(4));
+                year.setAlignment(Pos.CENTER);
+                year.setPrefWidth(507);
+               
+               
+                pane.getChildren().addAll(isbn,title,author,year);
+                pane.setStyle("-fx-padding: 20px; -fx-background-color:rgba(134,255,236,0.1); -fx-border-color: rgba(113,187,208,0.5); -fx-border-width: 1;");
+                pane.setPrefWidth(507);
+                pane.setVgap(10);
+               
+                main.getChildren().add(pane);
+                main.setVgap(15);
+                main.setPrefColumns(1);
+            }
+            scrollPane.setContent(main);
+        } catch (SQLException ex) {
+            Logger.getLogger(AppController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
