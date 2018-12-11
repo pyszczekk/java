@@ -35,7 +35,7 @@ System.out.println("Could not listen on port: 6666");
                        
                         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                         BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-                        bufferedWriter.write("Napisz: \"END\" by zakończyć połączenie.");
+                      
                         bufferedWriter.flush();
                         String line = bufferedReader.readLine();
                         while (!line.contains("END")){
