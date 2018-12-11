@@ -35,11 +35,9 @@ System.out.println("Could not listen on port: 6666");
                        
                         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                         BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-                      
                         bufferedWriter.flush();
                         String line = bufferedReader.readLine();
-                        while (!line.contains("END")){
-                            bufferedWriter.write("Sever says: ");
+                        while (line!= null){
                             bufferedWriter.write(line);
                             bufferedWriter.write("\n");
                             bufferedWriter.flush();
